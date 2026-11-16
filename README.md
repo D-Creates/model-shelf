@@ -14,4 +14,4 @@ Model Shelf — a private, offline library and inspector for local model files (
 
 
 
-Made by [D-CREATIONS](https://dcreations.fr), Montpellier. MIT licence.
+Made by [D-CREATIONS](https://dcreations.fr), Montpellier. Apache License 2.0 (see LICENSE and NOTICE).
