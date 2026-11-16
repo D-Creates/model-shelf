@@ -1,0 +1,42 @@
+name: ModelShelf
+options:
+  bundleIdPrefix: fr.dcreations
+  deploymentTarget: { iOS: "18.0", macOS: "15.0" }
+settings:
+  base: { MARKETING_VERSION: "1.0", CURRENT_PROJECT_VERSION: "1", DEVELOPMENT_TEAM: "", CODE_SIGN_STYLE: Automatic, SWIFT_VERSION: "6.0", GENERATE_INFOPLIST_FILE: YES, INFOPLIST_KEY_CFBundleDisplayName: "Model Shelf", INFOPLIST_KEY_CFBundleIconName: "AppIcon", ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon, INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: NO }
+targets:
+  ModelShelf:
+    type: application
+    platform: iOS
+    sources: [Shared, iOS, Assets/iOS.xcassets]
+    settings: { PRODUCT_BUNDLE_IDENTIFIER: fr.dcreations.modelshelf, INFOPLIST_KEY_UILaunchScreen_Generation: YES, TARGETED_DEVICE_FAMILY: "1,2", INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight", INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight" }
+  ModelShelfMac:
+    type: application
+    platform: macOS
+    sources: [Shared, macOS, Assets/macOS.xcassets]
+    settings: { PRODUCT_BUNDLE_IDENTIFIER: fr.dcreations.modelshelf, PRODUCT_NAME: "Model Shelf", INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.developer-tools, ENABLE_APP_SANDBOX: YES, ENABLE_HARDENED_RUNTIME: YES, ENABLE_USER_SELECTED_FILES: readonly }
+  ModelShelfTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [Tests]
+    dependencies: [{ target: ModelShelf }]
+    settings: { TARGETED_DEVICE_FAMILY: "1,2" }
+  ModelShelfUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [UITests]
+    dependencies: [{ target: ModelShelf }]
+    settings: { TEST_TARGET_NAME: ModelShelf, TARGETED_DEVICE_FAMILY: "1,2" }
+  ModelShelfMacUITests:
+    type: bundle.ui-testing
+    platform: macOS
+    sources: [UITests]
+    dependencies: [{ target: ModelShelfMac }]
+    settings: { TEST_TARGET_NAME: ModelShelfMac }
+schemes:
+  ModelShelf:
+    build: { targets: { ModelShelf: all } }
+    test: { targets: [ModelShelfTests, ModelShelfUITests] }
+  ModelShelfMac:
+    build: { targets: { ModelShelfMac: all } }
+    test: { targets: [ModelShelfMacUITests] }
